@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'playerhq/base.html' %}
+<link href="static/css/base.css" rel="stylesheet">
+{% load staticfiles %}
+
+{% block title_block %}
+	<title> {{ game.GameName }} </title>
+{% endblock %}
+
+{% block body_block %}
+	<h1> Rating: {{ game.GameRating }} </h1>
+	<p> Category: {{ game.GameCategory }} </p>
+	<p> Description: {{ game.Gamedescription }} </p>
+	
+	<h2> Reviews  </h2>
+	{% for review in reviews %}
+		<p> {{review.ReviewerName}}:</br>
+		Graphics: {{review.Graphics}}</br>
+		Storyline: {{review.Storyline}}</br>
+		Gameplay: {{review.Gameplay}}</br>
+		{{review.Review}} </p>
+	{% endfor %}
+	
+{% endblock %}

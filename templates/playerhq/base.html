@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>Home</title>
+	<link href="static/css/base.css" rel="stylesheet">
+</head>
+<body bgcolor="#1CAB08">
+	<header class="heade">
+		<img src="{% static 'images/playerhq1.png' %}" alt="Logo" />
+		<input class="button" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
+
+  		<input class="button1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign in"/>
+	</header>
+	{% if user.is_authenticated %}
+		Welcome, {{ user.username }}, to the PlayersHQ!
+	    {% else %}
+                Welcome, to the PlayersHQ! <br />
+	    {% endif %}
+	<hr/>
+		<div class="topnav">
+		{% if categories %}
+			{% for category in categories %}
+<a href="{% url 'playerhq:category' category.slug %}">{{ category.catName}}</a>
+			{%endfor%}
+		{% endif %}
+		  <input type="search" placeholder="Search...">
+		</div>
+	<hr/>
+	<div>
+	{% block body_block %}
+	{% endblock %}
+	</div>
+	<footer class="foo">
+		<a href="{% url 'playerhq:about' %}">About</a> || 
+		<a href="#myaccount"> My Account</a>
+	</footer>
+</body>
+</html>

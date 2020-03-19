@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'playerhq/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+{% endblock %}
+
+{% block body_block %}
+
+<h2>Leaderboard</h2>
+	{% if games%}
+	    <ul>
+	    {% for game in games%}
+	 	<li>
+		    <p>
+			<a href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a>
+			
+		    </p>
+		</li>
+	    {% endfor %}
+	    </ul> 	    
+        {% else %}
+	    <strong>There are no games present.</strong>
+	{% endif %}
+
+	{% if topGame %}
+		<h3>Number 1 Game: {{topGame.GameName}}</h3>
+	{% endif %}
+
+{% endblock %}
